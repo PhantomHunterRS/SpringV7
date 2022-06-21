@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS SHOP;
+
 CREATE TABLE IF NOT EXISTS SHOP.PRODUCT
 (
     ID               BIGSERIAL      NOT NULL PRIMARY KEY,
@@ -41,7 +43,7 @@ insert into shop.PRODUCT (title, cost) values ('Juice - Orange, 341 Ml', 1750.15
 insert into shop.PRODUCT (title, cost) values ('Coconut - Whole', 4699.15);
 insert into shop.PRODUCT (title, cost) values ('Lettuce - Curly Endive', 1033.53);
 insert into shop.PRODUCT (title, cost) values ('Cheese - Cottage Cheese', 3342.27);
-insert into shop.PRODUCT (title, costshop.) values ('Sauce Bbq Smokey', 4120.84);
+insert into shop.PRODUCT (title, cost) values ('Sauce Bbq Smokey', 4120.84);
 insert into shop.PRODUCT (title, cost) values ('Sherry - Dry', 4442.98);
 insert into shop.PRODUCT (title, cost) values ('Pepper - Green Thai', 1274.74);
 insert into shop.PRODUCT (title, cost) values ('Cheese - Gouda', 4510.97);
