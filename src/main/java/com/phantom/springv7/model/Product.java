@@ -1,9 +1,6 @@
 package com.phantom.springv7.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,10 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 public class Product {
+    public Product(String title, int cost) {
+        this.title = title;
+        this.cost = cost;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

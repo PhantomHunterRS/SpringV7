@@ -3,10 +3,7 @@ package com.phantom.springv7.controllers;
 import com.phantom.springv7.model.Product;
 import com.phantom.springv7.services.ProductService;
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,14 +18,27 @@ public class ProductController {
     public List<Product> findAll(){
         return productService.findAll();
     }
-    @GetMapping("/products/{id}")
+    @GetMapping("/product/{id}")
     public Product findById(@PathVariable Long id){
         return productService.findById(id).get();
     }
-    @GetMapping("/newProducts")
-    public Product saveOrCreate(@PathVariable Long id){
-        return productService.findById(id).get();
+    @PostMapping("/newProduct")
+    public Product create(@RequestBody String title, @RequestBody int cost){
+        return productService.create(title,cost);
     }
-
+    @GetMapping("/product/delete/{id}")
+    public List<Product> deleteById(@PathVariable Long id){
+        productService.deleteById(id);
+        return productService.findAll();
+    }
+    @PostMapping("/costBetween")
+    public List<Product> findByCostBetween(@RequestBody() int minCost , @RequestBody int maxCost){
+        return productService.findByCostBetween(minCost,maxCost);
+    }
+//    @GetMapping("/costBetween")
+//    public List<Product> findByCostBetween(@RequestParam(name = "min") int minCost,
+//                                           @RequestParam(name = "max") int maxCost){
+//        return productService.findByCostBetween(minCost,maxCost);
+//    }
 
 }

@@ -21,7 +21,13 @@ public class ProductService {
     public Optional<Product> findById(Long id){
         return productRepository.findById(id);
     }
-    public Product save(Product product){
-        return productRepository.save(product);
+    public Product create(String title,int cost){
+        return productRepository.save(new Product(title,cost));
+    }
+    public void deleteById(Long id){
+        productRepository.deleteById(id);
+    }
+    public List<Product> findByCostBetween(int minCost,int maxCost){
+     return productRepository.findByCostBetween(minCost,maxCost);
     }
 }
