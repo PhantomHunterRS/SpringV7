@@ -22,7 +22,7 @@ public class ProductService {
         return productRepository.findById(id);
     }
     public Product create(String title,int cost){
-        return productRepository.save(new Product(title,cost));
+        return productRepository.create(title,cost);
     }
     public void deleteById(Long id){
         productRepository.deleteById(id);
