@@ -21,8 +21,8 @@ public class ProductService {
     public Optional<Product> findById(Long id){
         return productRepository.findById(id);
     }
-    public Product create(String title,int cost){
-        return productRepository.create(title,cost);
+    public Product save(Product product){
+        return productRepository.save(product);
     }
     public void deleteById(Long id){
         productRepository.deleteById(id);

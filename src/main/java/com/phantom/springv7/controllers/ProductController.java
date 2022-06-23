@@ -23,8 +23,12 @@ public class ProductController {
         return productService.findById(id).get();
     }
     @PostMapping("/newProduct")
-    public Product create(@RequestBody String title, @RequestBody int cost){
-        return productService.create(title,cost);
+    public Product create(@RequestBody Product product){
+        Product productIn = new Product();
+        productIn.setId(product.getId());
+        productIn.setTitle(product.getTitle());
+        productIn.setCost(product.getCost());
+        return productService.save(productIn);
     }
     @GetMapping("/product/delete/{id}")
     public List<Product> deleteById(@PathVariable Long id){
@@ -35,10 +39,5 @@ public class ProductController {
     public List<Product> findByCostBetween(@RequestBody() int minCost , @RequestBody int maxCost){
         return productService.findByCostBetween(minCost,maxCost);
     }
-//    @GetMapping("/costBetween")
-//    public List<Product> findByCostBetween(@RequestParam(name = "min") int minCost,
-//                                           @RequestParam(name = "max") int maxCost){
-//        return productService.findByCostBetween(minCost,maxCost);
-//    }
 
 }
