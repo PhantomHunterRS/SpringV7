@@ -20,7 +20,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/products")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Product> findAll(){
         return productService.findAll();
     }
@@ -41,6 +41,7 @@ public class ProductController {
     }
 
     @PostMapping("/newProduct")
+    @ResponseStatus(HttpStatus.CREATED)
     public Product create(@RequestBody Product product){
         Product productIn = new Product();
         productIn.setId(product.getId());
@@ -49,11 +50,13 @@ public class ProductController {
         return productService.save(productIn);
     }
     @GetMapping("/product/delete/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Product> deleteById(@PathVariable Long id){
         productService.deleteById(id);
         return productService.findAll();
     }
     @PostMapping("/costBetween")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Product> findByCostBetween(@RequestBody() int minCost , @RequestBody int maxCost){
         return productService.findByCostBetween(minCost,maxCost);
     }
