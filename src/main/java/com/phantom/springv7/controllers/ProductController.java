@@ -1,6 +1,7 @@
 package com.phantom.springv7.controllers;
 
 import com.phantom.springv7.exceptions.MarketError;
+import com.phantom.springv7.exceptions.ResourceNotFoundException;
 import com.phantom.springv7.model.Product;
 import com.phantom.springv7.services.ProductService;
 import lombok.*;
@@ -19,6 +20,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/products")
+    @ResponseStatus(HttpStatus.CREATED)
     public List<Product> findAll(){
         return productService.findAll();
     }
@@ -34,9 +36,8 @@ public class ProductController {
 // V2 exception
     @GetMapping("/product/{id}")
     public Product findById(@PathVariable Long id){
-
-
-        return productService.findById(id).get();
+        return productService.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Product id = "+ id + " not found"));
     }
 
     @PostMapping("/newProduct")
