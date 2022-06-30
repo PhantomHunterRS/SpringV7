@@ -9,5 +9,7 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> findByCostBetween(int minCost,int maxCost);
 
+//    @Query("INSERT INTO PRODUCT (title,cost) VALUES (:title,:cost)")
+//    Product save( String title,int cost);
 
 }
